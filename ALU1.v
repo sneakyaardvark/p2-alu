@@ -9,7 +9,7 @@
     F = A plus 1
     F = A plus B plus CarryIn
   Params:
-  Select bit 1, Select bit 2, Input A, Input B, Carry In, Carry Out, Function Output
+  Function Output, Carry Out, Select bit 1, Select bit 2, Input A, Input B, Carry In
 */
 
 module ALU1(F, CarryOut, S1, S0, A, B, CarryIn); //put outputs at beginning of params dummy
