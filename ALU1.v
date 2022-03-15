@@ -12,7 +12,7 @@
   Function Output, Carry Out, Select bit 1, Select bit 2, Input A, Input B, Carry In
 */
 
-module ALU1(F, CarryOut, S1, S0, A, B, CarryIn); //put outputs at beginning of params dummy
+module ALU1(F, CarryOut, S1, S0, A, B, CarryIn);
 input S1, S0, A, B, CarryIn;
 output CarryOut, F;
 
@@ -27,7 +27,10 @@ assign wireOutput[0] = A & ~B;
 assign wireOutput[1] = ~A;
 
 assign wireCarryOut[1:0] = 0; // set remaining entries to 0, similar to connecting MUX in's to GND
-//assign WireCarryIn = S1 & ~S0 | CarryIn;
-assign WireCarryIn = CarryIn;
+
+/* makes the HA carry in 1 so A plus 1 ALWAYS happens when S1=1 & S0=0, but ONLY for the 1-bit. Commented out for 8-bit. With more time you could make this a seperate module -> add it to ALU1 and ALU8. */
+assign WireCarryIn = S1 & ~S0 | CarryIn;
+//assign WireCarryIn = CarryIn;
+
 Dual4to1Mux Mux1(F, CarryOut, {S1, S0}, wireOutput, wireCarryOut);
 endmodule
